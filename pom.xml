@@ -31,7 +31,7 @@
     <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
     <checkstyle.failOnError>true</checkstyle.failOnError>
     <version.com.puppycrawl.tools.checkstyle>6.18</version.com.puppycrawl.tools.checkstyle>
-    <compile.source>1.7</compile.source>
+    <compile.source>1.6</compile.source>
   </properties>
 
   <developers>
@@ -74,123 +74,7 @@
   <build>
     <plugins>
       <!-- Checkstyle -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.17</version>
 
-        <executions>
-          <execution>
-            <id>check</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-
-        <configuration>
-          <consoleOutput>${checkstyle.consoleOutput}</consoleOutput>
-          <failsOnError>${checkstyle.failOnError}</failsOnError>
-          <checkstyleRules>
-            <module name="Checker">
-              <module name="FileTabCharacter">
-                <property name="eachLine" value="true"/>
-              </module>
-
-              <module name="RegexpSingleline">
-                <!-- \s matches whitespace character, $ matches end of line. -->
-                <property name="format" value="\s+$"/>
-                <property name="message" value="Line has trailing spaces."/>
-              </module>
-
-              <module name="TreeWalker">
-
-                <module name="LineLength">
-                  <property name="max" value="160"/>
-                  <property name="ignorePattern" value="^\s*//.*|^package.*|^import.*|a href|href|http://|https://|ftp://"/>
-                </module>
-
-                <module name="Indentation">
-                  <property name="basicOffset" value="2"/>
-                  <property name="braceAdjustment" value="0"/>
-                  <property name="caseIndent" value="2"/>
-                  <property name="throwsIndent" value="4"/>
-                  <property name="lineWrappingIndentation" value="4"/>
-                  <property name="arrayInitIndent" value="2"/>
-                </module>
-
-                <module name="NeedBraces"/>
-
-                <module name="OneStatementPerLine"/>
-
-                <!-- Checks for imports                              -->
-                <module name="AvoidStarImport">
-                  <property name="allowStaticMemberImports" value="true"/>
-                </module>
-                <module name="RedundantImport"/>
-
-                <module name="UnusedImports" />
-
-                <module name="IllegalImport">
-                  <property name="illegalPkgs" value="junit.framework"/>
-                </module>
-
-                <!-- Modifier Checks                                    -->
-                <module name="ModifierOrder"/>
-                <module name="RedundantModifier"/>
-
-                <!-- Checks for blocks. You know, those {}'s         -->
-                <module name="LeftCurly"/>
-
-                <!-- Checks for common coding problems               -->
-                <!-- Disabled until http://sourceforge.net/tracker/?func=detail&aid=2843447&group_id=29721&atid=397078 is fixed-->
-                <!--<module name="DoubleCheckedLocking"/>-->
-                <module name="EmptyStatement"/>
-                <module name="EmptyBlock">
-                  <property name="option" value="TEXT"/>
-                  <property name="tokens" value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
-                </module>
-                <module name="EqualsHashCode"/>
-                <module name="IllegalInstantiation"/>
-
-                <!-- Miscellaneous other checks.                   -->
-                <module name="UpperEll"/>
-                <module name="PackageAnnotation"/>
-                <module name="CovariantEquals"/>
-                <module name="ArrayTypeStyle"/>
-
-              </module>
-
-            </module>
-          </checkstyleRules>
-
-          <useFile />
-        </configuration>
-        <dependencies>
-           <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${version.com.puppycrawl.tools.checkstyle}</version>
-            <exclusions>
-              <exclusion>
-                <groupId>com.sun</groupId>
-                <artifactId>tools</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
-        <artifactId>maven-eclipse-plugin</artifactId>
-        <groupId>org.mobicents.tools</groupId>
-        <inherited>false</inherited>
-        <executions />
-        <configuration>
-          <eclipseProjectName>${project.artifactId}</eclipseProjectName>
-          <generateProjectsForModules>false</generateProjectsForModules>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
